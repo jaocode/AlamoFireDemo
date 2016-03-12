@@ -19,6 +19,5 @@ typealias ServerResponseCallback = (response: ServerResponse) -> Void
 protocol Client
 {
     var data : HeroData {get}
-    
     func RetrieveData (callback: ServerResponseCallback)
 }

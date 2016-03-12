@@ -10,26 +10,7 @@ import Foundation
 import Alamofire
 import JSONJoy
 
-//extension SuperHeroes : HeroData
-//{
-//    var count : Int
-//    {
-//        get {return heroes.count}
-//    }
-//
-//    subscript (heroName : String) -> Hero?
-//    {
-//        get
-//        {
-//            var result : Hero?
-//            result = heroes[heroName]
-//            return result
-//        }
-//    }
-//}
-
-
-class DataWrapper : HeroData
+private class DataWrapper : HeroData
 {
     private var client : SuperHeroes
     
@@ -39,7 +20,7 @@ class DataWrapper : HeroData
     }
     
     var count : Int
-    {
+        {
         get {return client.heroes.count}
     }
     
@@ -51,29 +32,11 @@ class DataWrapper : HeroData
             return client.heroes [index]
         }
     }
-    
-//    subscript (heroName : String) -> Hero?
-//    {
-//        get
-//        {
-//            var result : Hero?
-//            result = client?.heroes[heroName]
-//            return result
-//        }
-//    }
 }
 
-//extension Hero : JSONJoy
-//{
-//    init(_ decoder: JSONDecoder) throws
-//    {
-//    
-//    }
-//}
-
-@objc class SuperHeroes : NSObject, Client
+class SuperHeroes : Client
 {
-    private var heroes = [Hero]() //[String:Hero]()
+    private var heroes = [Hero]()
     private var serverURL = "http://127.0.0.1:8080/api/heroes"
     
     var data : HeroData

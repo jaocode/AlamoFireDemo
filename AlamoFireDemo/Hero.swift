@@ -12,12 +12,7 @@ import JSONJoy
 struct HeroPower : JSONJoy
 {
     let power : String
-    
-//    init (power : String)
-//    {
-//        self.power = power
-//    }
-    
+        
     init(_ decoder: JSONDecoder) throws
     {
         power = try decoder["power"].getString()
@@ -30,14 +25,6 @@ struct Hero : JSONJoy
     let firstName : String
     let lastName : String
     var powers : [HeroPower]
-    
-//    init (heroName : String, firstName: String, lastName: String, powers : [HeroPower])
-//    {
-//        self.heroName = heroName
-//        self.firstName = firstName
-//        self.lastName = lastName
-//        self.powers = powers
-//    }
     
     init(_ decoder: JSONDecoder) throws
     {
