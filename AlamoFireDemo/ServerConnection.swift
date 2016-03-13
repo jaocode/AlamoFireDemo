@@ -16,7 +16,7 @@ enum ServerResponse
 
 typealias ServerResponseCallback = (response: ServerResponse) -> Void
 
-protocol Client
+protocol ServerConnection
 {
     var data : HeroData {get}
     func RetrieveData (callback: ServerResponseCallback)

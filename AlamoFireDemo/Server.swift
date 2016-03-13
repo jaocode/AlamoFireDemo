@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ActiveClient
+class Server
 {
-    static let instance : Client = SuperHeroes ()
+    static let active : ServerConnection = SuperHeroes (server: "http://127.0.0.1:8080/api/heroes")
 }

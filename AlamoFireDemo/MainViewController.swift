@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UITableViewController
 {
-    var heroes = ActiveClient.instance.data
+    var heroes = Server.active.data
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class MainViewController: UITableViewController
     
     override func viewDidAppear(animated: Bool)
     {
-        ActiveClient.instance.RetrieveData {
+        Server.active.RetrieveData {
             response in
             
             switch response

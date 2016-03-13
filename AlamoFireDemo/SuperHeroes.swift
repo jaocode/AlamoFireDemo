@@ -34,19 +34,24 @@ private class DataWrapper : HeroData
     }
 }
 
-class SuperHeroes : Client
+class SuperHeroes : ServerConnection
 {
     private var heroes = [Hero]()
-    private var serverURL = "http://127.0.0.1:8080/api/heroes"
+    private var server : String
     
     var data : HeroData
     {
         return DataWrapper(dataSource: self)
     }
     
+    init (server: String)
+    {
+        self.server = server
+    }
+    
     func RetrieveData(callback: ServerResponseCallback)
     {
-        Alamofire.request(.GET, serverURL).responseJSON
+        Alamofire.request(.GET, server).responseJSON
         {
             response in
             
