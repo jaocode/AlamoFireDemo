@@ -12,7 +12,7 @@
 		623F3E821C93421C00206D89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 623F3E801C93421C00206D89 /* Main.storyboard */; };
 		623F3E841C93421C00206D89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 623F3E831C93421C00206D89 /* Assets.xcassets */; };
 		623F3E871C93421C00206D89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 623F3E851C93421C00206D89 /* LaunchScreen.storyboard */; };
-		623F3E911C9395BA00206D89 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623F3E901C9395BA00206D89 /* Server.swift */; };
+		623F3E911C9395BA00206D89 /* HeroData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623F3E901C9395BA00206D89 /* HeroData.swift */; };
 		623F3E931C9398A700206D89 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623F3E921C9398A700206D89 /* Hero.swift */; };
 		623F3E951C9398D700206D89 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623F3E941C9398D700206D89 /* Client.swift */; };
 		623F3E991C93997100206D89 /* SuperHeroes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623F3E981C93997100206D89 /* SuperHeroes.swift */; };
@@ -28,7 +28,7 @@
 		623F3E831C93421C00206D89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		623F3E861C93421C00206D89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		623F3E881C93421C00206D89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		623F3E901C9395BA00206D89 /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		623F3E901C9395BA00206D89 /* HeroData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroData.swift; sourceTree = "<group>"; };
 		623F3E921C9398A700206D89 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		623F3E941C9398D700206D89 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		623F3E981C93997100206D89 /* SuperHeroes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperHeroes.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 				623F3E831C93421C00206D89 /* Assets.xcassets */,
 				623F3E851C93421C00206D89 /* LaunchScreen.storyboard */,
 				623F3E881C93421C00206D89 /* Info.plist */,
-				623F3E901C9395BA00206D89 /* Server.swift */,
+				623F3E901C9395BA00206D89 /* HeroData.swift */,
 				623F3E941C9398D700206D89 /* Client.swift */,
 				623F3E921C9398A700206D89 /* Hero.swift */,
 				623F3E981C93997100206D89 /* SuperHeroes.swift */,
@@ -230,7 +230,7 @@
 				623F3E951C9398D700206D89 /* Client.swift in Sources */,
 				623F3E7F1C93421C00206D89 /* MainViewController.swift in Sources */,
 				62D47FCB1C93D4C200E5466D /* ActiveClient.swift in Sources */,
-				623F3E911C9395BA00206D89 /* Server.swift in Sources */,
+				623F3E911C9395BA00206D89 /* HeroData.swift in Sources */,
 				623F3E7D1C93421C00206D89 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

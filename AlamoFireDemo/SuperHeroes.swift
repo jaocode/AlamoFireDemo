@@ -10,9 +10,10 @@ import Foundation
 import Alamofire
 import JSONJoy
 
+
 private class DataWrapper : HeroData
 {
-    private var client : SuperHeroes
+    private weak var client : SuperHeroes?
     
     private init (dataSource : SuperHeroes)
     {
@@ -20,19 +21,19 @@ private class DataWrapper : HeroData
     }
     
     var count : Int
-        {
-        get {return client.heroes.count}
+    {
+        get {return client?.heroes.count ?? 0}
     }
     
-    
-    subscript (index : Int) -> Hero
+    subscript (index : Int) -> Hero?
     {
         get
         {
-            return client.heroes [index]
+            return client?.heroes [index]
         }
     }
 }
+
 
 class SuperHeroes : Client
 {

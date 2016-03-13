@@ -40,34 +40,46 @@ class MainViewController: UITableViewController
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
-        let hero = heroes[section]
-        return hero.heroName
+        if let hero = heroes[section]
+        {
+            return hero.heroName
+        }
+        
+        return ""
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        return heroes.count
+        return heroes.count != 0 ? heroes.count : 0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 1 + heroes[section].powers.count
+        if let hero = heroes[section]
+        {
+            return 1 + hero.powers.count
+        }
+        
+        return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") ?? UITableViewCell (style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
-        let hero = heroes[indexPath.section]
-        
-        switch indexPath.row
+        if let hero = heroes[indexPath.section]
         {
-        case 0:
-            cell.detailTextLabel?.text = "Real Name"
-            cell.textLabel?.text = hero.firstName + " " + hero.lastName
-        default:
-            cell.textLabel?.text = hero.powers[indexPath.row - 1].power
-            break
+            
+            switch indexPath.row
+            {
+            case 0:
+                cell.detailTextLabel?.text = "Real Name"
+                cell.textLabel?.text = "\(hero.firstName) \(hero.lastName)"
+            default:
+                cell.textLabel?.text = hero.powers[indexPath.row - 1].power
+                cell.detailTextLabel?.text = "Power"
+                break
+            }
         }
         
         return cell
