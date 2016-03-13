@@ -13,5 +13,5 @@ protocol HeroData
 {
     var count : Int { get }
     //subscript (heroName : String) -> Hero? { get }
-    subscript (index : Int) -> Hero? { get }
+    subscript (index : Int) -> Hero { get }
 }

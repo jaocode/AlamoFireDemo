@@ -40,46 +40,36 @@ class MainViewController: UITableViewController
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
-        if let hero = heroes[section]
-        {
-            return hero.heroName
-        }
-        
-        return ""
+        let hero = heroes[section]
+        return hero.heroName
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        return heroes.count != 0 ? heroes.count : 0
+        return heroes.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if let hero = heroes[section]
-        {
-            return 1 + hero.powers.count
-        }
-        
-        return 0
+        let hero = heroes[section]
+        return 1 + hero.powers.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") ?? UITableViewCell (style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
-        if let hero = heroes[indexPath.section]
+        let hero = heroes[indexPath.section]
+        
+        switch indexPath.row
         {
-            
-            switch indexPath.row
-            {
-            case 0:
-                cell.detailTextLabel?.text = "Real Name"
-                cell.textLabel?.text = "\(hero.firstName) \(hero.lastName)"
-            default:
-                cell.textLabel?.text = hero.powers[indexPath.row - 1].power
-                cell.detailTextLabel?.text = "Power"
-                break
-            }
+        case 0:
+            cell.detailTextLabel?.text = "Real Name"
+            cell.textLabel?.text = "\(hero.firstName) \(hero.lastName)"
+        default:
+            cell.textLabel?.text = hero.powers[indexPath.row - 1].power
+            cell.detailTextLabel?.text = "Power"
+            break
         }
         
         return cell

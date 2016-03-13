@@ -13,7 +13,7 @@ import JSONJoy
 
 private class DataWrapper : HeroData
 {
-    private weak var client : SuperHeroes?
+    private var client : SuperHeroes
     
     private init (dataSource : SuperHeroes)
     {
@@ -22,18 +22,17 @@ private class DataWrapper : HeroData
     
     var count : Int
     {
-        get {return client?.heroes.count ?? 0}
+        get {return client.heroes.count}
     }
     
-    subscript (index : Int) -> Hero?
+    subscript (index : Int) -> Hero
     {
         get
         {
-            return client?.heroes [index]
+            return client.heroes [index]
         }
     }
 }
-
 
 class SuperHeroes : Client
 {
@@ -42,7 +41,7 @@ class SuperHeroes : Client
     
     var data : HeroData
     {
-        return DataWrapper (dataSource: self)
+        return DataWrapper(dataSource: self)
     }
     
     func RetrieveData(callback: ServerResponseCallback)
