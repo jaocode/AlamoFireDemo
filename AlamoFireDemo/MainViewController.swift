@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UITableViewController
 {
-    var heroes = Server.active.data
+    var heroes = ActiveServer.active.data
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +24,7 @@ class MainViewController: UITableViewController
     
     override func viewDidAppear(animated: Bool)
     {
-        Server.active.RetrieveData {
-            response in
-            
-            switch response
-            {
-            case .Success (let data):
-                self.tableView.reloadData()
-                break
-            case .Error(let msg):
-                break
-            }
-        }
+        refreshData()
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
@@ -60,12 +49,12 @@ class MainViewController: UITableViewController
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") ?? UITableViewCell (style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
         let hero = heroes[indexPath.section]
-        
+
         switch indexPath.row
         {
         case 0:
             cell.detailTextLabel?.text = "Real Name"
-            cell.textLabel?.text = "\(hero.firstName) \(hero.lastName)"
+            cell.textLabel?.text = "\(hero.firstName ?? "") \(hero.lastName ?? "")"
         default:
             cell.textLabel?.text = hero.powers[indexPath.row - 1].power
             cell.detailTextLabel?.text = "Power"
@@ -73,6 +62,49 @@ class MainViewController: UITableViewController
         }
         
         return cell
+    }
+    
+    func refreshData ()
+    {
+        ActiveServer.active.RetrieveData {
+            response in
+            
+            switch response
+            {
+            case .Success:
+                self.tableView.reloadData()
+                break
+            case .Error(let msg):
+                print (msg)
+                break
+            }
+        }
+
+    }
+    
+    @IBAction func addHeroButtonSelected ()
+    {
+        let newHero = SuperHeroGenerator().generate()
+        
+        ActiveServer.active.AddHero(newHero)
+        {
+            response in
+            
+            switch response
+            {
+            case .Success:
+                self.tableView.reloadData()
+                break
+            case .Error(let msg):
+                print (msg)
+                break
+            }
+        }
+    }
+    
+    @IBAction func refreshButtonSelected ()
+    {
+        refreshData ()
     }
 }
 

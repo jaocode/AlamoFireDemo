@@ -1,5 +1,5 @@
 //
-//  Client.swift
+//  HeroesServer.swift
 //  AlamoFireDemo
 //
 //  Created by Justin Okun on 3/11/16.
@@ -10,14 +10,15 @@ import Foundation
 
 enum ServerResponse
 {
-    case Success (data : HeroData)
+    case Success
     case Error (message: String)
 }
 
 typealias ServerResponseCallback = (response: ServerResponse) -> Void
 
-protocol ServerConnection
+protocol HeroesServer
 {
     var data : HeroData {get}
     func RetrieveData (callback: ServerResponseCallback)
+    func AddHero (hero: Hero, callback: ServerResponseCallback)
 }

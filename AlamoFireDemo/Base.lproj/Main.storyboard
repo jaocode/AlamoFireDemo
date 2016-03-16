@@ -15,7 +15,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="7yd-rY-HQt" detailTextLabel="cXn-tN-sam" style="IBUITableViewCellStyleSubtitle" id="xIK-h3-xZc">
-                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xIK-h3-xZc" id="hFO-1h-x6r">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -44,7 +44,18 @@
                             <outlet property="delegate" destination="cle-oe-55z" id="Acn-sG-2kC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="oLz-LS-YBF"/>
+                    <navigationItem key="navigationItem" title="Super Heroes Registry" id="oLz-LS-YBF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="YL2-hk-Nw6">
+                            <connections>
+                                <action selector="refreshButtonSelected" destination="cle-oe-55z" id="O1x-5A-vGz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wbk-4o-jXy">
+                            <connections>
+                                <action selector="addHeroButtonSelected" destination="cle-oe-55z" id="MB5-nD-ilb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5sK-2a-Rj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

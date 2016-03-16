@@ -7,44 +7,36 @@
 //
 
 import Foundation
-import JSONJoy
+import AlamofireJsonToObjects
+import EVReflection
 
-struct HeroPower : JSONJoy
+// Model representing a super hero's power
+// EVObject required to utilize AlamofireJsonToObject mapping
+class HeroPower : EVObject
 {
-    let power : String
-        
-    init(_ decoder: JSONDecoder) throws
+    var _id : String?
+    var power : String?
+    
+    required init ()
     {
-        power = try decoder["power"].getString()
+        super.init()
     }
+    
+    init (power: String)
+    {
+        self.power = power
+        super.init()
+    }
+    
 }
 
-struct Hero : JSONJoy
+// Model representing a super hero
+// EVObject required to utilize AlamofireJsonToObject mapping
+class Hero : EVObject
 {
-    let heroName : String
-    let firstName : String
-    let lastName : String
-    var powers : [HeroPower]
-    
-    init(_ decoder: JSONDecoder) throws
-    {
-        heroName = try decoder["heroName"].getString()
-        firstName = try decoder["firstName"].getString()
-        lastName = try decoder["lastName"].getString()
-        
-        powers = [HeroPower]()
-        
-        guard let pwrdecoders = decoder["powers"].array else
-        {
-            throw JSONError.WrongType
-        }
-        
-        for pwrdecoder in pwrdecoders
-        {
-            if let power : HeroPower = try? HeroPower(pwrdecoder)
-            {
-                powers.append(power)
-            }
-        }
-    }
+    var _id : String?
+    var heroName : String?
+    var firstName : String?
+    var lastName : String?
+    var powers : [HeroPower] = [HeroPower]()
 }
