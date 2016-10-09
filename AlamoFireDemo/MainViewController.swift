@@ -22,41 +22,41 @@ class MainViewController: UITableViewController
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         refreshData()
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         let hero = heroes[section]
         return hero.heroName
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return heroes.count
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         let hero = heroes[section]
         return 1 + hero.powers.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") ?? UITableViewCell (style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell (style: UITableViewCellStyle.subtitle, reuseIdentifier: "cell")
         
-        let hero = heroes[indexPath.section]
+        let hero = heroes[(indexPath as NSIndexPath).section]
 
-        switch indexPath.row
+        switch (indexPath as NSIndexPath).row
         {
         case 0:
             cell.detailTextLabel?.text = "Real Name"
             cell.textLabel?.text = "\(hero.firstName ?? "") \(hero.lastName ?? "")"
         default:
-            cell.textLabel?.text = hero.powers[indexPath.row - 1].power
+            cell.textLabel?.text = hero.powers[(indexPath as NSIndexPath).row - 1].power
             cell.detailTextLabel?.text = "Power"
             break
         }
@@ -71,10 +71,10 @@ class MainViewController: UITableViewController
             
             switch response
             {
-            case .Success:
+            case .success:
                 self.tableView.reloadData()
                 break
-            case .Error(let msg):
+            case .error(let msg):
                 print (msg)
                 break
             }
@@ -86,16 +86,16 @@ class MainViewController: UITableViewController
     {
         let newHero = SuperHeroGenerator().generate()
         
-        ActiveServer.active.AddHero(newHero)
+        ActiveServer.active.AddHero(hero: newHero)
         {
             response in
             
             switch response
             {
-            case .Success:
+            case .success:
                 self.tableView.reloadData()
                 break
-            case .Error(let msg):
+            case .error(let msg):
                 print (msg)
                 break
             }
