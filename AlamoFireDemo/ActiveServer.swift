@@ -10,6 +10,5 @@ import Foundation
 
 class ActiveServer
 {
-    //static let active : HeroesServer = AlamofireServer (server: "http://127.0.0.1:3000/api/heroes")
-    static let active : HeroesServer = AlamofireServer (server: "http://mutesymphony.com:4000/api/heroes")
+    static let active : HeroesServer = AlamofireServer (server: "http://127.0.0.1:3000/api/heroes")
 }

@@ -12,9 +12,9 @@ import Alamofire
 // Used to abstract the data from server
 private class DataWrapper : HeroData
 {
-    private var serverConnection : AlamofireServer
+    fileprivate var serverConnection : AlamofireServer
     
-    private init (dataSource : AlamofireServer)
+    fileprivate init (dataSource : AlamofireServer)
     {
         serverConnection = dataSource
     }
@@ -36,8 +36,8 @@ private class DataWrapper : HeroData
 // Implementation of HeroesServer that utilizes Alamofire to talk to a RESTful server
 class AlamofireServer : HeroesServer
 {
-    private var heroes = [Hero]()
-    private var server : String
+    fileprivate var heroes = [Hero]()
+    fileprivate var server : String
     
     var data : HeroData
     {
@@ -50,43 +50,43 @@ class AlamofireServer : HeroesServer
     }
     
     // Requests and downloads the server's database of super heroes
-    func RetrieveData(callback: ServerResponseCallback)
+    func RetrieveData(_ callback: @escaping ServerResponseCallback)
     {
-        Alamofire.request(.GET, server).responseArray
+        Alamofire.request(server).responseArray
         {
-            (response: Result<[Hero], NSError>) in 
-                
-            switch response
+            (response: DataResponse<[Hero]>) in
+            
+            switch response.result
             {
-            case .Success(let data):
+            case .success(let data):
                 self.heroes = data
-                callback (response: .Success)
-            case .Failure(let error):
-                callback (response: .Error(message: error.description))
+                callback (.success)
+            case .failure(let error):
+                callback (.error(message: error.localizedDescription))
                 break
             }
         }
     }
     
     // Submits a new super hero for inclusion in the server's database
-    func AddHero (hero: Hero, callback: ServerResponseCallback)
+    func AddHero (_ hero: Hero, callback: @escaping ServerResponseCallback)
     {
         // Just in case our cast fails. Parameters must be of type [String : AnyObject]
         guard let jsonData = hero.toDictionary() as? [String : AnyObject] else
         {
-            callback(response: .Error(message: "Problem with object conversion to JSON"))
+            callback(.error(message: "Problem with object conversion to JSON"))
             return 
         }
         
-        Alamofire.request(.POST, server, parameters: jsonData, encoding: .JSON).responseJSON{
+        Alamofire.request(server, method: .post, parameters: jsonData, encoding: JSONEncoding.default).responseJSON{
             (response) in
             
             switch response.result
             {
-            case .Success:
+            case .success:
                 self.RetrieveData(callback)
-            case .Failure(let error):
-                callback(response: .Error(message: error.description))
+            case .failure(let error):
+                callback(.error(message: error.localizedDescription))
                 break
             }
         }

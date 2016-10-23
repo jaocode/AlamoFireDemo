@@ -4,7 +4,7 @@
 use_frameworks!
 
 target 'AlamoFireDemo' do
-	pod 'Alamofire'
-	pod 'AlamofireJsonToObjects'
+	pod 'Alamofire', '~>4.0'
+	pod 'AlamofireJsonToObjects', '~>2.0'
 end
 

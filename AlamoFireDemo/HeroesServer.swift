@@ -10,15 +10,15 @@ import Foundation
 
 enum ServerResponse
 {
-    case Success
-    case Error (message: String)
+    case success
+    case error (message: String)
 }
 
-typealias ServerResponseCallback = (response: ServerResponse) -> Void
+typealias ServerResponseCallback = (_ response: ServerResponse) -> Void
 
 protocol HeroesServer
 {
     var data : HeroData {get}
-    func RetrieveData (callback: ServerResponseCallback)
-    func AddHero (hero: Hero, callback: ServerResponseCallback)
+    func RetrieveData (_ callback: @escaping ServerResponseCallback)
+    func AddHero (_ hero: Hero, callback: @escaping ServerResponseCallback)
 }
